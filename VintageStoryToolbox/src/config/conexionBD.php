@@ -1,18 +1,25 @@
 <?php
 class Database {
-    public static function conectar() {
-        $host = 'localhost';
-        $db = 'Vintage_Story_Toolbox';
-        $user = 'root'; // Cambiar según la configuración
-        $pass = 'admin';     // Cambiar según la configuración
+	public static function conectar() {
+	$host = $_ENV['DB_HOST'] ?? 'localhost';
+	$db   = $_ENV['DB_NAME'] ?? 'Vintage_Story_Toolbox';
+	$user = $_ENV['DB_USER'] ?? 'root';
+	$pass = $_ENV['DB_PASSWORD'] ?? 'admin';
 
-        try {
-            $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $pdo;
-        } catch (PDOException $e) {
-            die("Error de conexión: " . $e->getMessage());
-        }
-    }
+	try {
+			$pdo = new PDO(
+					"mysql:host=$host;dbname=$db;charset=utf8mb4",
+					$user,
+					$pass,
+					[
+							PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+							PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+					]
+			);
+			return $pdo;
+	} catch (PDOException $e) {
+			die("Error de conexión: " . $e->getMessage());
+	}
+	}
 }
 ?>
