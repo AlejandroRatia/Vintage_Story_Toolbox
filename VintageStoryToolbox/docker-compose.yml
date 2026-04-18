@@ -4,6 +4,7 @@ services:
   web:
     build: .
     container_name: php_app
+    restart: always          # ← Añade esto
     ports:
       - "8080:80"
     volumes:
@@ -16,12 +17,12 @@ services:
   db:
     image: mysql:8.0
     container_name: mysql_db
-    restart: always
+    restart: always          # ← Ya lo tienes
     environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: Vintage_Story_Toolbox
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: mi_base_datos
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: password
       MYSQL_ROOT_HOST: '%'
     ports:
       - "3306:3306"
@@ -33,6 +34,7 @@ services:
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin
+    restart: always          # ← Añade esto
     ports:
       - "8081:80"
     environment:

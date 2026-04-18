@@ -1,1 +1,21 @@
 *.zip
+
+# Variables de entorno
+.env
+
+# Dependencias
+/vendor/
+
+# Docker volumes
+/mysql_data/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
