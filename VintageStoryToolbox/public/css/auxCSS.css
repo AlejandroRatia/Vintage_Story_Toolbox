@@ -1,0 +1,145 @@
+/* Variables */
+:root {
+    --vst-bg:         #2A1808;
+    --vst-surface:    #3A2210;
+    --vst-border:     #6A4828;
+    --vst-gold:       #C8A070;
+    --vst-text:       #D4B896;
+    --vst-text-muted: #A07850;
+}
+
+/* Base */
+body {
+    background-color: var(--vst-bg);
+    color: var(--vst-text);
+    min-height: 100vh;
+}
+
+/* Navbar */
+.vst-navbar {
+    background-color: var(--vst-surface);
+    border-bottom: 2px solid var(--vst-gold);
+}
+
+.vst-navbar a {
+    color: var(--vst-text-muted);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.vst-navbar a:hover { color: var(--vst-gold); }
+
+.vst-brand {
+    color: var(--vst-gold) !important;
+    font-family: Georgia, serif;
+    font-weight: bold;
+}
+
+/* Cards */
+.vst-card {
+    background-color: var(--vst-surface);
+    border: 1px solid var(--vst-border) !important;
+    border-top: 3px solid var(--vst-gold) !important;
+    color: var(--vst-text);
+}
+
+.vst-card:hover {
+    border-color: var(--vst-gold) !important;
+    transform: translateY(-2px);
+    color: var(--vst-text);
+}
+
+/* Inputs y selects */
+.vst-select, .vst-input {
+    background-color: var(--vst-bg);
+    border: 1px solid var(--vst-border);
+    color: var(--vst-text);
+    border-radius: 6px;
+    padding: 8px 12px;
+    width: 100%;
+}
+
+.vst-select:focus, .vst-input:focus {
+    outline: none;
+    border-color: var(--vst-gold);
+    box-shadow: 0 0 0 2px rgba(200, 160, 112, 0.2);
+}
+
+.vst-select option {
+    background-color: var(--vst-surface);
+    color: var(--vst-text);
+}
+
+/* Botón */
+.vst-btn {
+    background-color: var(--vst-gold);
+    color: var(--vst-bg);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.vst-btn:hover { opacity: 0.85; }
+.vst-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Resultados */
+.vst-result-card {
+    background-color: var(--vst-bg);
+    border: 1px solid var(--vst-border);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.vst-result-value {
+    color: var(--vst-gold);
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Georgia, serif;
+}
+
+.vst-result-label {
+    color: var(--vst-text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Utilidades */
+.vst-divider {
+    border-color: var(--vst-border);
+    opacity: 1;
+}
+
+.vst-text-muted { color: var(--vst-text-muted) !important; }
+
+/* Spinner */
+.vst-spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--vst-border);
+    border-top-color: var(--vst-gold);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Composición aleación */
+.vst-composition-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--vst-border);
+}
+
+.vst-composition-row:last-child { border-bottom: none; }
+
+/* Icono */
+.vst-icon-bg {
+    background-color: rgba(200, 160, 112, 0.15);
+}
