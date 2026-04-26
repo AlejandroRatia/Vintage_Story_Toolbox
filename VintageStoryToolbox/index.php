@@ -21,6 +21,10 @@ switch($controller_name) {
 		require_once 'src/controllers/alloyController.php';
 		$controller = new alloyController();
 		break;
+	case 'crafting':
+    require_once 'src/controllers/craftingController.php';
+    $controller = new craftingController();
+    break;
 	default:
 		require_once 'src/controllers/routeController.php';
 		$controller = new routeController();
