@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vintage Story Toolbox</title>
-    <link rel="stylesheet" href="public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="public/css/auxCSS.css">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/auxCSS.css">
 </head>
 <body>
     <main class="d-flex flex-column align-items-center justify-content-center min-vh-100 px-3" role="main">
 
         <div class="mb-3" aria-hidden="true">
-            <img src="public/images/logo.png"
+            <img src="/public/images/misc/Gamelogo-vintagestory.png"
                  alt="Logo de Vintage Story Toolbox"
-                 width="72" height="72"
+                 width="400" height="400"
                  style="filter: drop-shadow(0 2px 8px rgba(200,160,112,0.3));">
         </div>
 
@@ -82,6 +82,6 @@
 
     </main>
 
-    <script src="public/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

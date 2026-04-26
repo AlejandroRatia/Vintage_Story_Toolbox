@@ -5,21 +5,24 @@ class Metal {
   private int $id;
   private string $name;
   private float $meltingPoint;
-  private array $images;
+  private ?string $ingotImage;
+  private ?string $nuggetImage;
   private bool $isAlloy;
   private ?array $composition;
 
-  // Constantes fijas del juego
-  const UNITS_PER_NUGGET    = 5;
-  const NUGGETS_PER_INGOT   = 20;
-  const UNITS_PER_INGOT     = 100;
-  const MAX_INGOTS_PER_BATCH = 25;
+  const UNITS_PER_NUGGET     = 5;
+  const NUGGETS_PER_INGOT    = 20;
+  const UNITS_PER_INGOT      = 100;
+  const MAX_NUGGETS_PER_BATCH = 512; // 4 ranuras × 128 pepitas
+  const MAX_NUGGETS_PER_SLOT  = 128;
+  const SLOTS_PER_CRUCIBLE    = 4;
 
   public function __construct(array $data) {
     $this->id          = $data['id'];
     $this->name        = $data['name'];
     $this->meltingPoint = $data['melting_point'];
-    $this->images      = json_decode($data['images'], true) ?? [];
+    $this->ingotImage  = $data['ingot_image']  ?? null;
+    $this->nuggetImage = $data['nugget_image'] ?? null;
     $this->isAlloy     = (bool) $data['is_alloy'];
     $this->composition = isset($data['composition']) ? json_decode($data['composition'], true) : null;
   }
@@ -28,7 +31,8 @@ class Metal {
   public function getId(): int { return $this->id; }
   public function getName(): string { return $this->name; }
   public function getMeltingPoint(): float { return $this->meltingPoint; }
-  public function getImages(): array { return $this->images; }
+  public function getIngotImage(): ?string { return $this->ingotImage; }
+  public function getNuggetImage(): ?string { return $this->nuggetImage; }
   public function isAlloy(): bool { return $this->isAlloy; }
   public function getComposition(): ?array { return $this->composition; }
 
@@ -41,11 +45,32 @@ class Metal {
     return $quantity * self::UNITS_PER_INGOT;
   }
 
-  public function calculateBatches(int $quantity): int {
-    return (int) ceil($quantity / self::MAX_INGOTS_PER_BATCH);
+  public function calculateBatches(int $quantity, ?array $customComposition = null): int {
+    $totalNuggets = $quantity * self::NUGGETS_PER_INGOT;
+
+    // Si no es aleación, cálculo simple
+    if (!$this->isAlloy || (!$this->composition && !$customComposition)) {
+        return (int) ceil($totalNuggets / self::MAX_NUGGETS_PER_BATCH);
+    }
+
+    // Usar composición personalizada o la por defecto
+    $comp = $customComposition ?? $this->composition;
+
+    // Calcular ranuras necesarias por componente
+    $totalSlots = 0;
+    foreach ($comp as $metal => $pct) {
+        // Aceptar tanto porcentaje directo como rango (usar punto medio)
+        if (is_array($pct)) {
+            $pct = ($pct[0] + $pct[1]) / 2;
+        }
+        $nuggetsForMetal = $totalNuggets * $pct / 100;
+        $slotsForMetal = ceil($nuggetsForMetal / self::MAX_NUGGETS_PER_SLOT);
+        $totalSlots += $slotsForMetal;
+    }
+
+    return (int) ceil($totalSlots / self::SLOTS_PER_CRUCIBLE);
   }
 
-  // Calcula los nuggets necesarios de cada componente para una aleación
   public function calculateCompositionNuggets(int $quantity): ?array {
     if (!$this->isAlloy || !$this->composition) return null;
 
@@ -54,10 +79,9 @@ class Metal {
 
     foreach ($this->composition as $metal => $percentage) {
       if (is_array($percentage)) {
-        // Rango: devuelve mínimo y máximo
         $result[$metal] = [
-        'min' => (int) floor($totalNuggets * $percentage[0] / 100),
-        'max' => (int) ceil($totalNuggets * $percentage[1] / 100)
+          'min' => (int) floor($totalNuggets * $percentage[0] / 100),
+          'max' => (int) ceil($totalNuggets * $percentage[1] / 100)
         ];
       } else {
         $result[$metal] = (int) ($totalNuggets * $percentage / 100);
@@ -66,7 +90,6 @@ class Metal {
     return $result;
   }
 
-  // Métodos estáticos para acceso a BBDD
   public static function getAll(PDO $db): array {
     try {
       $stmt = $db->prepare("SELECT * FROM METAL ORDER BY name ASC");
