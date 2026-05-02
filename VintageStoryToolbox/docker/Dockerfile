@@ -1,5 +1,8 @@
 FROM php:8.2-apache
 
+ARG CACHEBUST=1
+RUN echo "bust_${CACHEBUST}"
+
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # Eliminar todos los MPM y dejar solo prefork
