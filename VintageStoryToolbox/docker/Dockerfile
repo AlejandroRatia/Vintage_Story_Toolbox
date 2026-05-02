@@ -1,5 +1,7 @@
 FROM php:8.2-apache
 
+ARG CACHEBUST=1
+
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 RUN a2dismod mpm_event mpm_worker mpm_prefork 2>/dev/null || true && \
