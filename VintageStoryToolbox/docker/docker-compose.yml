@@ -2,13 +2,15 @@ version: '3.8'
 
 services:
   web:
-    build: .
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: php_app
-    restart: always          # ← Añade esto
+    restart: always
     ports:
       - "8080:80"
     volumes:
-      - ./src:/var/www/html
+      - ..:/var/www/html
     depends_on:
       - db
     networks:
@@ -17,12 +19,10 @@ services:
   db:
     image: mysql:8.0
     container_name: mysql_db
-    restart: always          # ← Ya lo tienes
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: mi_base_datos
-      MYSQL_USER: usuario
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: Vintage_Story_Toolbox
       MYSQL_ROOT_HOST: '%'
     ports:
       - "3306:3306"
@@ -34,7 +34,7 @@ services:
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin
-    restart: always          # ← Añade esto
+    restart: always
     ports:
       - "8081:80"
     environment:
