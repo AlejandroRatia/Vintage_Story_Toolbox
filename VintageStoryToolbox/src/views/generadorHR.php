@@ -6,6 +6,7 @@
   <title>Generador de Hojas de Ruta · VST</title>
   <link rel="stylesheet" href="/public/css/bootstrap.min.css">
   <link rel="stylesheet" href="/public/css/auxCSS.css">
+  <link rel="icon" type="image/png" href="/public/images/misc/170px-Gamelogo-vintagestory.png">
 </head>
 <body>
   <nav class="vst-navbar px-4 py-3 d-flex align-items-center justify-content-between" role="navigation" aria-label="Navegación principal">
@@ -76,6 +77,7 @@
       document.getElementById('searchInput').focus();
       document.getElementById('searchResults').innerHTML = '';
       document.getElementById('searchInput').value = '';
+      buscarItems(''); // Carga lista por defecto
     }
 
     function cerrarPanel() {
@@ -85,10 +87,6 @@
     // Buscar con debounce
     function buscarItems(query) {
       clearTimeout(searchTimer);
-      if (query.length < 2) {
-        document.getElementById('searchResults').innerHTML = '';
-        return;
-      }
       document.getElementById('searchSpinner').style.display = 'block';
       searchTimer = setTimeout(async () => {
         try {

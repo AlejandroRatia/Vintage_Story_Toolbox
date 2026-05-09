@@ -6,6 +6,7 @@
     <title>Vintage Story Toolbox</title>
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/auxCSS.css">
+    <link rel="icon" type="image/png" href="/public/images/misc/170px-Gamelogo-vintagestory.png">
 </head>
 <body>
     <main class="d-flex flex-column align-items-center justify-content-center min-vh-100 px-3" role="main">

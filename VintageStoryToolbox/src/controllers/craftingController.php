@@ -30,9 +30,10 @@ class craftingController {
     header('Content-Type: application/json');
     $name = isset($_GET['nombre']) ? trim($_GET['nombre']) : '';
 
-    if (strlen($name) < 2) {
-      echo json_encode([]);
-      return;
+    if (strlen($name) === 0) {
+        $items = Item::getAll($this->db);
+    } else {
+        $items = Item::search($this->db, $name);
     }
 
     try {
