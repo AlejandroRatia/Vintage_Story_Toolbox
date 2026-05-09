@@ -5,10 +5,11 @@ class Database {
 		$db   = $_ENV['DB_NAME'] ?? 'Vintage_Story_Toolbox';
 		$user = $_ENV['DB_USER'] ?? 'root';
 		$pass = $_ENV['DB_PASSWORD'] ?? 'admin';
+		$port = $_ENV['DB_PORT'] ?? '3306';
 
 		try {
 			$pdo = new PDO(
-				"mysql:host=$host;dbname=$db;charset=utf8mb4",
+				"mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4",
 				$user,
 				$pass,
 				[
