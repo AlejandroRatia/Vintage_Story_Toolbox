@@ -4,6 +4,6 @@
     "dockerfilePath": "docker/Dockerfile"
   },
   "deploy": {
-    "startCommand": "rm -f /etc/apache2/mods-enabled/mpm_event.conf /etc/apache2/mods-enabled/mpm_event.load && apache2-foreground"
+    "startCommand": "rm -f /etc/apache2/mods-enabled/mpm_event.conf /etc/apache2/mods-enabled/mpm_event.load && ln -sf /dev/stdout /var/log/apache2/access.log && ln -sf /dev/stderr /var/log/apache2/error.log && apache2-foreground"
   }
 }
