@@ -327,6 +327,8 @@
     // Renderizar nodo del árbol (recursivo)
     function renderTreeNode(node) {
       const hasChildren = node.children && node.children.length > 0;
+      const stations = node.stations ? (Array.isArray(node.stations) ? node.stations : JSON.parse(node.stations)) : [];
+      
       return `
         <div class="vst-tree-node">
           <div class="vst-tree-item">
@@ -336,6 +338,10 @@
             }
             <span style="font-size:13px; color:var(--vst-text);">${escapeHtml(node.name)}</span>
             <span class="vst-result-value" style="font-size:13px;">×${node.quantity}</span>
+            ${stations.length > 0
+              ? `<span class="vst-badge-valid" style="font-size:11px;">⚒ ${stations.join(', ')}</span>`
+              : ''
+            }
           </div>
           ${hasChildren ? `
             <div class="vst-tree-children">
