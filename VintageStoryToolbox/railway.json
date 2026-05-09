@@ -4,6 +4,6 @@
     "dockerfilePath": "docker/Dockerfile"
   },
   "deploy": {
-    "startCommand": "echo 'test' && sleep 30"
+    "startCommand": "which apache2-foreground && echo 'found'"
   }
 }
