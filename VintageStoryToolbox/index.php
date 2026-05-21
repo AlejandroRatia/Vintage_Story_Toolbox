@@ -1,11 +1,19 @@
 <?php
+$content = file_get_contents(__DIR__ . '/.env');
+$lines = preg_split('/\r\n|\r|\n/', $content);
+var_dump($lines);
+die();
 // Cargar .env
 if (file_exists(__DIR__ . '/.env')) {
-	$lines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+	$content = file_get_contents(__DIR__ . '/.env');
+	$lines = preg_split('/\r\n|\r|\n/', $content);
 	foreach ($lines as $line) {
-		if (strpos($line, '#') === 0) continue;
-		[$key, $value] = explode('=', $line, 2);
-		$_ENV[trim($key)] = trim($value);
+		$line = trim($line);
+		if (empty($line) || strpos($line, '#') === 0) continue;
+		if (strpos($line, '=') !== false) {
+			[$key, $value] = explode('=', $line, 2);
+			$_ENV[trim($key)] = trim($value);
+		}
 	}
 }
 
