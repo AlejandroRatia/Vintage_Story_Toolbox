@@ -8,6 +8,8 @@ if (file_exists(__DIR__ . '/.env')) {
 		$_ENV[trim($key)] = trim($value);
 	}
 }
+//var_dump($_ENV['DB_HOST'], $_ENV['DB_NAME'], $_ENV['DB_USER']);
+//die();
 
 $controller_name = isset($_GET['controller']) ? $_GET['controller'] : 'route';
 $action = isset($_GET['action']) ? $_GET['action'] : 'selector';
