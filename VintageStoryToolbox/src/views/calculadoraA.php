@@ -6,7 +6,7 @@
     <title>Calculadora de Aleaciones · VST</title>
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/auxCSS.css">
-    <link rel="icon" type="image/png" href="/public/images/misc/170px-Gamelogo-vintagestory.png">
+    <link rel="icon" type="image/png" href="/public/images/misc/vintagestorytoolbox.png">
 </head>
 <body>
 

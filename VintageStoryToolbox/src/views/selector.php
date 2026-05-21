@@ -6,13 +6,13 @@
     <title>Vintage Story Toolbox</title>
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/auxCSS.css">
-    <link rel="icon" type="image/png" href="/public/images/misc/170px-Gamelogo-vintagestory.png">
+    <link rel="icon" type="image/png" href="/public/images/misc/vintagestorytoolbox.png">
 </head>
 <body>
     <main class="d-flex flex-column align-items-center justify-content-center min-vh-100 px-3" role="main">
 
         <div class="mb-3" aria-hidden="true">
-            <img src="/public/images/misc/Gamelogo-vintagestory.png"
+            <img src="/public/images/misc/vintagestorytoolbox.png"
                  alt="Logo de Vintage Story Toolbox"
                  width="400" height="400"
                  style="filter: drop-shadow(0 2px 8px rgba(200,160,112,0.3));">

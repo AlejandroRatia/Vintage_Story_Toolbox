@@ -4,4 +4,12 @@ MySQL Password
 guay2008alex   
 MySQL Database Name
 if0_41984861_XXX
-See below for available database names
+
+FTP Username
+if0_41984861 
+FTP Password
+guay2008alex   
+FTP Hostname
+ftpupload.net
+FTP Port (optional)
+21
