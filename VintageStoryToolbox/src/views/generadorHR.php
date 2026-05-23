@@ -6,7 +6,7 @@
   <title>Generador de Hojas de Ruta · VST</title>
   <link rel="stylesheet" href="/public/css/bootstrap.min.css">
   <link rel="stylesheet" href="/public/css/auxCSS.css">
-  <link rel="icon" type="image/png" href="/public/images/misc/vintagestorytoolbox.png">
+  <link rel="icon" type="image/png" href="/public/images/misc/icon.ico">
 </head>
 <body>
   <nav class="vst-navbar px-4 py-3 d-flex align-items-center justify-content-between" role="navigation" aria-label="Navegación principal">
