@@ -1,8 +1,4 @@
 <?php
-$content = file_get_contents(__DIR__ . '/.env');
-$lines = preg_split('/\r\n|\r|\n/', $content);
-var_dump($lines);
-die();
 // Cargar .env
 if (file_exists(__DIR__ . '/.env')) {
 	$content = file_get_contents(__DIR__ . '/.env');
