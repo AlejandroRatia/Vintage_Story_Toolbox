@@ -6,7 +6,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     container_name: php_app
-    restart: always
+    restart: no
     ports:
       - "8080:80"
     volumes:
@@ -19,7 +19,7 @@ services:
   db:
     image: mysql:8.0
     container_name: mysql_db
-    restart: always
+    restart: no
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: Vintage_Story_Toolbox
@@ -34,7 +34,7 @@ services:
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin
-    restart: always
+    restart: no
     ports:
       - "8081:80"
     environment:
